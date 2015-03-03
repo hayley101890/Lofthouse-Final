@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Invoice Creator</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+				<a class="navbar-brand" href="#">Invoice Creator</a>
+			</div>
+		</div>
+	</nav>
+	
+<div class="row">
+	<div class="col-md-6">
+		<form>
+			<div class="billfrom">
+			<h3>Bill From...</h3>
+			<div class="form-group">
+				<label for="yourname">Your Name</label>
+				<input type="text" class="form-control" id="yourname" name="yourname" placeholder="Your Name">
+			</div>
+			<div class="form-group">
+				<label for="companyname">Company Name</label>
+				<input type="text" class="form-control" id="companyname" name="companyname" placeholder="Company Name">
+			</div>
+			<div class="form-group">
+				<label for="streetaddress">Street Address</label>
+				<input type="text" class="form-control" id="streetaddress" name="streetaddress" placeholder="Street Address">
+			</div>
+			<div class="form-group">
+				<label for="citystatezip">City, State Zip</label>
+				<input type="text" class="form-control" id="citystatezip" name="citystateszip" placeholder="City, State Zip">
+			</div>
+			<div class="form-group">
+				<label for="emailaddress">Email Address</label>
+				<input type="text" class="form-control" id="emailaddress" name="emailaddress" placeholder="Email Address">
+			</div>
+			</div>
+			
+			<div class="billto">
+			<h3>Bill To...</h3>
+			<div class="form-group">
+				<label for="client/companyname">Client/Company Name</label>
+				<input type="text" class="form-control" id="clientcompanyname" name="Client/Company Name" placeholder="Client/Company Name">
+			</div>
+			<div class="form-group">
+				<label for="streetaddress">Street Address</label>
+				<input type="text" class="form-control" id="streetaddress2" name="Street Address" placeholder="Street Address">
+			</div>
+			<div class="form-group">
+				<label for="citystatezip">City, State Zip</label>
+				<input type="text" class="form-control" id="citystatezip2" name="CityStateZip" placeholder="City, State Zip">
+			</div>
+			</div>
+			
+			<div class="invoice">
+			<h3>Invoice</h3>
+			<div class="form-group">
+				<label for="invoice#">Invoice #</label>
+				<input type="text" class="form-control" id="invoice" name="Invoice" placeholder="Invoice #">
+			</div>
+			<div class="form-group">
+				<label for="invoicedate">Invoice Date</label>
+				<input type="text" class="form-control" id="invoicedate" name="InvoiceDate" placeholder="Invoice Date">
+			</div>
+			<div class="form-group">
+				<label for="paymentdue">Payment Due</label>
+				<input type="text" class="form-control" id="paymentdue" placeholder="Payment Due">
+			</div>
+			</div>
+
+			<div class="repeat">
+				<div class="wrapper">
+					<div class="repeat template row item">
+						<input type="text" id="item" name="item[{{row-count-placeholder}}][title]" placeholder="Item"/>
+						<input type="text" id="amount" name="item[{{row-count-placeholder}}][amount]" placeholder="Amount"/>
+						<span class="remove btn btn-danger">-</span>
+					</div>
+					<span class="add btn btn-success">+</span>
+				</div>
+			</div>
+
+		<form class="form-inline">
+			<div class="total">
+				<div class="form-group">
+					<label class="sr-only" for="inputamount">Amount (in dollars)</label>
+				<div class="input-group">
+					<div class="input-group-addon">Subtotal</div>
+						<input type="text" class="form-control" id="subtotal" name="subtotal" placeholder="$0.00" value="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="tax">Tax %</label>
+				<div class="input-group">
+					<div class="input-group-addon">Tax %</div>
+						<input type="text" class="form-control" id="tax" name="tax" placeholder="%" value="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="total"> Total (in dollars)</label>
+				<div class="input-group">
+					<div class="input-group-addon">Total</div>
+						<input type="text" class="form-control" id="total" name="total" placeholder="$0.00">
+					</div>
+				</div>
+			</div>
+		</form>
+
+</div> <!--closing 1st column -->
+<div class="row">
+	<div class="col-md-6">
+		<iframe frameborder="5" width="450" height="625"></iframe>
+	</div>
+</div> <!--closing 2nd column-->
+
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	
+	<script type="text/javascript" src="js/jquery/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="js/jspdf.js"></script>
+	<script type="text/javascript" src="js/FileSaver.js"></script>
+	<script type="text/javascript" src="js/BlobBuilder.js"></script>
+	
+	<script type="text/javascript" src="js/repeatable-fields.js"></script>
+
+	<script>
+	$(function() {
+		$('.repeat').each(function() {
+			$(this).repeatable_fields();
+		});
+	});
+
+	function createpdf() {
+		var doc = new jsPDF();
+		doc.setFont("helvetica");
+		doc.setFontSize(18);
+		doc.setTextColor(99, 99, 99);
+		doc.text(20, 30, 'Bill From...');
+		
+		doc.setFontSize(14);
+		doc.setTextColor(150, 150, 150);
+		doc.text(20, 40, $("#yourname").val());
+		doc.text(20, 50, $("#companyname").val());
+		doc.text(20, 60, $("#streetaddress").val());
+		doc.text(20, 70, $("#citystatezip").val());
+		doc.text(20, 80, $("#emailaddress").val());
+		
+		doc.setFontSize(18);
+		doc.setTextColor(99, 99, 99);
+		doc.text(20, 100, 'Bill To...');
+		
+		doc.setFontSize(14);
+		doc.setTextColor(150, 150, 150);
+		doc.text(20, 110, $("#clientcompanyname").val());
+		doc.text(20, 120, $("#streetaddress2").val());
+		doc.text(20, 130, $("#citystatezip2").val());
+		
+		doc.setFontSize(18);
+		doc.setTextColor(99, 99, 99);
+		doc.text(128, 30, 'Invoice #');
+		doc.text(155, 30, $("#invoice").val());
+		doc.text(138, 40, 'Date:');
+		doc.text(155, 40, $("#invoicedate").val());
+		doc.text(113, 50, 'Payment Due:');
+		doc.text(155, 50, $("#paymentdue").val());
+		
+		doc.setFontSize(14);
+		doc.setTextColor(99, 99, 99);
+
+		doc.text(30, 160, $(".item:first-child").val());
+		doc.text(20, 150, 'Item');
+		doc.text(20, 160, $("#item").val());
+		doc.text(150, 150, 'Amount');
+		doc.text(150, 160, $("#amount").val());
+		
+		doc.setFontSize(18);
+		doc.setTextColor(99, 99, 99);
+		doc.text(130, 220, 'Subtotal:  $');
+		doc.text(163, 220, $("#subtotal").val());
+		doc.text(142, 230, 'Tax:  $');
+		var tax = $("#subtotal").val() * ($("#tax").val()/100);
+		doc.text(162, 230, String(tax));
+		doc.text(139, 240, 'Total:  $');
+		doc.text(163, 240, $("#total").val());
+		var pdfoutput = doc.output('datauristring');
+		$('iframe').attr('src', pdfoutput);
+	}
+
+	$("input").on("keypress", function() {
+		$(".row.item").not(".template").each(function() {
+		  console.log($(this));
+		});
+		var total = parseFloat(($("#subtotal").val() * ($("#tax").val()/100))) + parseFloat($("#subtotal").val());
+			$("#total").val(total);
+			createpdf();
+	});
+	</script>
+</body>
+</html>

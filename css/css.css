@@ -1,0 +1,123 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.navbar {
+	background-color: white;
+	position: fixed;
+	width: 100%;
+	height: 60px;
+	z-index: 1;
+}
+.navbar-brand {
+	font-family: helvetica;
+	font-weight: 300;
+	font-size: 1.8em;
+	padding-left: 15px;
+	padding-top: 22px;
+}
+.glyphicon {
+	float: left;
+	margin-top: 14px;
+	padding: 7px;
+	padding-left: 15px;
+	color: darkblue;
+}
+body {
+    background-image: url("../images/cream_pixels.png");
+	background-repeat: repeat;
+}
+form {
+	width: 70%;
+	margin: 50px;
+	margin-left: 125px;
+}
+h3 {
+	font-family: helvetica;
+	font-weight: 300;
+	font-size: 1.8em;
+}
+.billfrom {
+	padding-top: 50px;
+}
+.billto h3{
+	padding-top: 20px;
+}
+.invoice h3{
+	padding-top: 20px;
+}
+label {
+	font-family: helvetica;
+	font-weight: 300;
+	color: darkblue;
+}
+.template {
+	width: 50%;
+	margin: 50px;
+}
+div.form-group {
+	padding-left: 15px;
+}
+iframe {
+	margin-top: 105px;
+	margin-left: 5%;
+	background-color: white;
+	position: fixed;
+}
+.repeat input {
+	width: 150px;
+	margin-bottom: 5px;
+	padding-left: 5px;
+	margin-top: 10px;
+	display: inline-block;
+	position: absolute;
+}
+.repeat input:first-child {
+	margin-left: 15px;
+}
+#amount {
+	margin-left: 175px;
+}
+.add {
+	margin-top: -150px;
+	margin-left: 15px;
+	background-color: white;
+	border: solid 1px darkblue;
+	color: darkblue;
+}
+.remove {
+	background-color: white;
+	border: solid 1px darkblue;
+	color: darkblue;
+	height: 25px;
+	width: 25px;
+	margin-left: 330px;
+	margin-top: 10px;
+}
+.add:hover {
+	background: rgba(57, 181, 74, 0.5);
+	border: solid 1px darkblue;
+	transition-delay:.2s;
+}
+.remove:hover {
+	background: rgba(255, 0, 0, 0.5);
+	border: solid 1px darkblue;
+	transition-delay:.2s;
+}
+.input-group-addon {
+	background: white;
+	color: darkblue;
+	font-family: helvetica;
+	font-weight: 300;
+}
+h4{
+	margin-left: 50px;
+	margin-top: -35px;
+	font-family: helvetica;
+	font-weight: 300;
+	font-size: 1.2em;
+}
+input {
+	font-size: 1em;
+
+}
